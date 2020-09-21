@@ -141,10 +141,69 @@ CatchCheater(
 			if(g_CatchCheater[client] > 0)
 			{
 				char ReasonBuffer[256];
+				char 	kzdeljump [64];
+				
+				GetClientAuthId(client, AuthId_Steam2, kzdeljump, sizeof(kzdeljump));
 				FormatEx(ReasonBuffer, sizeof(ReasonBuffer), "%s | %s:%i", CatchReason, ip, port);
 				//FormatEx(ReasonBuffer, sizeof(ReasonBuffer), "%s", CatchReason);
 
-				ServerCommand("sm_delstats #%d", GetClientUserId(client));
+				ServerCommand("sm_deletejump %s KZT LJ", kzdeljump);
+				ServerCommand("sm_deletejump %s KZT LJ YES", kzdeljump);
+				ServerCommand("sm_deletejump %s KZT BH", kzdeljump);
+				ServerCommand("sm_deletejump %s KZT BH YES", kzdeljump);
+				ServerCommand("sm_deletejump %s KZT MBH", kzdeljump);
+				ServerCommand("sm_deletejump %s KZT MBH YES", kzdeljump);
+				ServerCommand("sm_deletejump %s KZT WJ", kzdeljump);
+				ServerCommand("sm_deletejump %s KZT WJ YES", kzdeljump);
+				ServerCommand("sm_deletejump %s KZT LAJ", kzdeljump);
+				ServerCommand("sm_deletejump %s KZT LAJ YES", kzdeljump);
+				ServerCommand("sm_deletejump %s KZT LAH", kzdeljump);
+				ServerCommand("sm_deletejump %s KZT LAH YES", kzdeljump);
+				ServerCommand("sm_deletejump %s KZT JB", kzdeljump);
+				ServerCommand("sm_deletejump %s KZT JB YES", kzdeljump);
+				ServerCommand("sm_deletejump %s KZT LBH", kzdeljump);
+				ServerCommand("sm_deletejump %s KZT LBH YES", kzdeljump);
+				ServerCommand("sm_deletejump %s KZT LWJ", kzdeljump);
+				ServerCommand("sm_deletejump %s KZT LWJ YES", kzdeljump);
+
+				ServerCommand("sm_deletejump %s SKZ LJ", kzdeljump);
+				ServerCommand("sm_deletejump %s SKZ LJ YES", kzdeljump);
+				ServerCommand("sm_deletejump %s SKZ BH", kzdeljump);
+				ServerCommand("sm_deletejump %s SKZ BH YES", kzdeljump);
+				ServerCommand("sm_deletejump %s SKZ MBH", kzdeljump);
+				ServerCommand("sm_deletejump %s SKZ MBH YES", kzdeljump);
+				ServerCommand("sm_deletejump %s SKZ WJ", kzdeljump);
+				ServerCommand("sm_deletejump %s SKZ WJ YES", kzdeljump);
+				ServerCommand("sm_deletejump %s SKZ LAJ", kzdeljump);
+				ServerCommand("sm_deletejump %s SKZ LAJ YES", kzdeljump);
+				ServerCommand("sm_deletejump %s SKZ LAH", kzdeljump);
+				ServerCommand("sm_deletejump %s SKZ LAH YES", kzdeljump);
+				ServerCommand("sm_deletejump %s SKZ JB", kzdeljump);
+				ServerCommand("sm_deletejump %s SKZ JB YES", kzdeljump);
+				ServerCommand("sm_deletejump %s SKZ LBH", kzdeljump);
+				ServerCommand("sm_deletejump %s SKZ LBH YES", kzdeljump);
+				ServerCommand("sm_deletejump %s SKZ LWJ", kzdeljump);
+				ServerCommand("sm_deletejump %s SKZ LWJ YES", kzdeljump);
+
+				ServerCommand("sm_deletejump %s VNL LJ", kzdeljump);
+				ServerCommand("sm_deletejump %s VNL LJ YES", kzdeljump);
+				ServerCommand("sm_deletejump %s VNL BH", kzdeljump);
+				ServerCommand("sm_deletejump %s VNL BH YES", kzdeljump);
+				ServerCommand("sm_deletejump %s VNL MBH", kzdeljump);
+				ServerCommand("sm_deletejump %s VNL MBH YES", kzdeljump);
+				ServerCommand("sm_deletejump %s VNL WJ", kzdeljump);
+				ServerCommand("sm_deletejump %s VNL WJ YES", kzdeljump);
+				ServerCommand("sm_deletejump %s VNL LAJ", kzdeljump);
+				ServerCommand("sm_deletejump %s VNL LAJ YES", kzdeljump);
+				ServerCommand("sm_deletejump %s VNL LAH", kzdeljump);
+				ServerCommand("sm_deletejump %s VNL LAH YES", kzdeljump);
+				ServerCommand("sm_deletejump %s VNL JB", kzdeljump);
+				ServerCommand("sm_deletejump %s VNL JB YES", kzdeljump);
+				ServerCommand("sm_deletejump %s VNL LBH", kzdeljump);
+				ServerCommand("sm_deletejump %s VNL LBH YES", kzdeljump);
+				ServerCommand("sm_deletejump %s VNL LWJ", kzdeljump);
+				ServerCommand("sm_deletejump %s VNL LWJ YES", kzdeljump);
+
 				if(IS_STRAFE_GUARD_METHOD_CATCH)
 				{
 					CS_Admin_SetBan(0, client, 259200, ReasonBuffer);
@@ -160,7 +219,7 @@ CatchCheater(
 					CS_Admin_SetBan(0, client, 0, ReasonBuffer);
 					//ServerCommand("sm_ban #%d %d \"%s | %s:%i\"", GetClientUserId(client), 0, CatchReason, ip, port);
 				}
-				PrintToChatAll("\x01\04 \x03[AntiCheat] \x02banned \x04%N \x04%s", client, CatchReason);
+				PrintToChatAll("\x01\04 \x03AntiCheat \x01| \x02banned \x04%N \x04%s", client, CatchReason);
 			}
 			
 			//пишем в зависимости от причины в разные логи
@@ -177,8 +236,8 @@ CatchCheater(
 	}
 	else
 	{
-		//PrintToChatAll("\x01\04 \x04[AntiCheat] \x01Admin \x02%N \x01detected \x04%s", client, CatchReason);
-		//LogToFile(g_AdminTestPath, CatchLog);
+		PrintToChatAll("\x01\04 \x04[AntiCheat] \x01Admin \x02%N \x01detected \x04%s", client, CatchReason);
+		LogToFile(g_AdminTestPath, CatchLog);
 	}	
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
